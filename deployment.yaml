@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        my-label: some-value
+        another-label: my-app-name
+  template:
+    metadata:
+      name: namem
+      labels:
+         my-label: some-value
+         another-label: my-app-name 
+    spec:
+      containers:
+        - image: sarawahba/os_team
+          name: team-container
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "1"
+            requests:
+              memory: "100Mi"
